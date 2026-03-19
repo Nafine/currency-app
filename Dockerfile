@@ -3,7 +3,7 @@ FROM python:3.12-alpine AS builder
 LABEL stage=builder
 
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
-COPY uv.lock pyproject.toml ./
+COPY uv.lock pyproject.toml /
 
 ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy
 ENV UV_NO_DEV=1
@@ -18,7 +18,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 
 FROM python:3.12-alpine
 
-RUN apk update && apk add --no-cache tini && \
+RUN apk update && apk add --no-cache tini=0.19.0-r3 && \
     addgroup -g 1001 nonroot &&  \
     adduser -u 1001 -S -D -G nonroot -h /home/nonroot nonroot
 
