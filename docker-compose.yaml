@@ -1,0 +1,12 @@
+services:
+  currency-app:
+    image: naf1ne/currency-app:v0.0.1
+    container_name: currency-app
+    ports:
+    -  '8080:8080'
+    restart: unless-stopped
+    environment:
+      PORT: '8080'
+      VERSION: 'v0.0.1'
+      AUTHOR: 'nafine'
+
