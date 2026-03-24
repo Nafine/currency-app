@@ -1,0 +1,6 @@
+.gitignore
+Dockerfile
+.venv
+.env
+.gitlab-ci.yml
+README.md
