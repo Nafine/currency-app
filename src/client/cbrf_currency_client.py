@@ -1,5 +1,4 @@
 from datetime import date as datetime_date
-from typing import List
 
 import httpx
 
@@ -14,7 +13,7 @@ class CbrfCurrencyClient(CurrencyClient):
     def __init__(self, currency_parser: CurrencyParser):
         self._currency_parser = currency_parser
 
-    def get_daily_rates(self, date: datetime_date | None = None) -> List[Currency]:
+    def get_daily_rates(self, date: datetime_date | None = None) -> list[Currency]:
         return self._currency_parser.parse_all(self._fetch_daily_rates(date))
 
     def get_rates_map(self, date: datetime_date | None = None) -> dict[str, float]:

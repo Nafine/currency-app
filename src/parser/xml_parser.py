@@ -1,15 +1,13 @@
 import xml.etree.ElementTree as et
 
-from typing import Dict, List
-
-from dishka import provide, Scope, Provider
+from dishka import Provider, Scope, provide
 
 from src.models import Currency
 from src.parser.currency_parser import CurrencyParser
 
 
 class CurrencyXmlParser(CurrencyParser):
-    def parse_all(self, xml_content: str) -> List[Currency]:
+    def parse_all(self, xml_content: str) -> list[Currency]:
         root = et.fromstring(xml_content)
         currencies = []
         for valute in root.findall(".//Valute"):
@@ -17,7 +15,7 @@ class CurrencyXmlParser(CurrencyParser):
             currencies.append(currency)
         return currencies
 
-    def parse_rates(self, xml_content: str) -> Dict[str, float]:
+    def parse_rates(self, xml_content: str) -> dict[str, float]:
         currencies = self.parse_all(xml_content)
         return {c.char_code: c.value for c in currencies}
 

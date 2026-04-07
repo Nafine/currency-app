@@ -1,4 +1,4 @@
-from typing import Iterable
+from collections.abc import Iterable
 
 from dishka import AsyncContainer, Provider, make_async_container
 from fastapi import FastAPI

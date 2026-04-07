@@ -1,4 +1,4 @@
-from dishka import provide, Provider, Scope
+from dishka import Provider, Scope, provide
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 

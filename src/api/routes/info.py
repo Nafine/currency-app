@@ -3,11 +3,11 @@ from typing import Any
 
 from dishka import FromDishka
 from dishka.integrations.fastapi import DishkaRoute
-from fastapi import HTTPException, APIRouter
+from fastapi import APIRouter, HTTPException
 
-from src.models import SettingsPublic, ServiceInfoPublic
-from src.service.currency_service import CurrencyService
 from src.config.config import Settings
+from src.models import ServiceInfoPublic, SettingsPublic
+from src.service.currency_service import CurrencyService
 
 router = APIRouter(route_class=DishkaRoute)
 
@@ -31,4 +31,4 @@ async def read_currency(service: FromDishka[CurrencyService], currency: str | No
         rate = service.get_currency_rate(date, currency)
         return ServiceInfoPublic(service="currency", data={currency.upper(): rate})
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=e.__str__())
+        raise HTTPException(status_code=400, detail=e.__str__()) from e
