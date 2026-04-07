@@ -1,0 +1,38 @@
+replicaCount: 1
+
+image:
+  repository: naf1ne/currency-app
+  pullPolicy: Always
+  tag: "latest"
+
+serviceAccount:
+  create: true
+  automount: true
+  annotations: {}
+  name: ""
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 80
+
+ingress:
+  className: ""
+  annotations: {}
+  hosts:
+    - host: yadro-app.k3s.dc.lysmux.dev
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+
+livenessProbe:
+  tcpSocket:
+    port: 80
+  initialDelaySeconds: 10
+  periodSeconds: 10
+readinessProbe:
+  tcpSocket:
+    port: 80
+  initialDelaySeconds: 10
+  periodSeconds: 10

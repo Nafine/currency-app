@@ -1,7 +1,7 @@
 from dishka.integrations.fastapi import setup_dishka
 from fastapi import FastAPI
 
-from src.setup.app_factory import create_web_app, create_ioc_container
+from src.setup.app_factory import create_ioc_container, create_web_app
 
 
 def make_app() -> FastAPI:

@@ -19,8 +19,8 @@ class CurrencyService:
 
         try:
             return rates[currency.upper()]
-        except KeyError:
-            raise ValueError(f"Invalid currency: {currency}")
+        except KeyError as e:
+            raise ValueError(f"Invalid currency: {currency}") from e
 
     def get_rates_map(self, date: datetime_date | None = None) -> dict[str, float]:
         return self._currency_client.get_rates_map(date=date)
